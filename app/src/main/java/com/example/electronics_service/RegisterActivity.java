@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     toHome();
                 }
                 else {
-                    Log.d(LOG_TAG, "User creation failed");
+                    Log.w(LOG_TAG, "User creation failed");
                     Toast.makeText(RegisterActivity.this, "User creation failed: " +
                             Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }
