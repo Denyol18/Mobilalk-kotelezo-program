@@ -8,6 +8,14 @@
     <string name="last_name">Vezetéknév</string>
     <string name="first_name">Keresztnév</string>
     <string name="email">E-mail cím</string>
-    <string name="passwordConfirm">Jelszó megerősítése</string>
+    <string name="password_confirm">Jelszó megerősítése</string>
     <string name="cancel">Mégse</string>
+    <string name="phone_number">Telefonszám</string>
+    <string name="address">Cím</string>
+    <string-array name="phone_types">
+        <item>Otthoni</item>
+        <item>Mobil</item>
+        <item>Munkahelyi</item>
+        <item>Egyéb</item>
+    </string-array>
 </resources>
