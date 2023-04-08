@@ -12,7 +12,9 @@
         android:id="@+id/editTextUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="text"
@@ -23,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
@@ -31,9 +35,20 @@
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="@string/login"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintVertical_bias="0.075" />
+        android:layout_marginRight="10dp"
+        android:onClick="login"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:onClick="register"
+        android:text="@string/register" />
 
 </LinearLayout>
