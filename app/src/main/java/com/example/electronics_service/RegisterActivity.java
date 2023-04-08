@@ -83,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Log.i(LOG_TAG, "Registered user: " + userName + ", Full name: " + lastName + " " + firstName +
                 ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
                 ", Phone Type: " + phoneType + ", Address: " + address);
-
     }
 
     public void cancel(View view) {
