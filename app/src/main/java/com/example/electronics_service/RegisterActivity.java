@@ -2,6 +2,7 @@ package com.example.electronics_service;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import java.util.Objects;
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private static final String PREF_KEY = Objects.requireNonNull(RegisterActivity.class.getPackage()).toString();
+    private static final int SECRET_KEY = 18;
 
     EditText lastNameET;
     EditText firstNameET;
@@ -83,10 +85,17 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Log.i(LOG_TAG, "Registered user: " + userName + ", Full name: " + lastName + " " + firstName +
                 ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
                 ", Phone Type: " + phoneType + ", Address: " + address);
+        toHome();
     }
 
     public void cancel(View view) {
         finish();
+    }
+
+    public void toHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
+        startActivity(intent);
     }
 
     @Override

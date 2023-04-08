@@ -37,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
         Log.i(LOG_TAG, "Logged in user: " + userName + ", Password: " + password);
+        toHome();
     }
 
     public void register(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
+        intent.putExtra("SECRET_KEY", SECRET_KEY);
+        startActivity(intent);
+    }
+
+    public void toHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
     }

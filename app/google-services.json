@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "308110815436",
+    "project_id": "electronics-service-164c0",
+    "storage_bucket": "electronics-service-164c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308110815436:android:9258b4c442f430c818d269",
+        "android_client_info": {
+          "package_name": "com.example.electronics_service"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308110815436-iuhh470gvq13sbqh6b7bsgdphab3hrn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.electronics_service",
+            "certificate_hash": "e3edfd14f3ad7f260a395ac86c389d1956d75b80"
+          }
+        },
+        {
+          "client_id": "308110815436-f8vmhscivbh4ohdj3f92rcv73aj0h02u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjKaqKCwAolhnm4nAMgwNveF51zDlyIHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308110815436-f8vmhscivbh4ohdj3f92rcv73aj0h02u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
