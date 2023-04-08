@@ -5,6 +5,7 @@ plugins {
 
 android {
     compileSdk 33
+    namespace 'com.example.electronics_service'
 
     defaultConfig {
         applicationId "com.example.electronics_service"

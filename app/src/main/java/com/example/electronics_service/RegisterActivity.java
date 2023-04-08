@@ -1,5 +1,6 @@
 package com.example.electronics_service;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,50 +12,50 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String LOG_TAG = RegisterActivity.class.getName();
     private static final String PREF_KEY = Objects.requireNonNull(RegisterActivity.class.getPackage()).toString();
-    private static final int SECRET_KEY = 18;
 
     EditText lastNameET;
     EditText firstNameET;
     EditText userEmailET;
-    EditText userNameET;
     EditText passwordET;
     EditText passwordConfirmET;
     EditText phoneNumberET;
     Spinner spinner;
     EditText addressET;
 
+    private FirebaseAuth mAuth;
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        int secret_key = getIntent().getIntExtra("SECRET_KEY", 0);
-
-        if (secret_key != 18) {
-            finish();
-        }
-
         lastNameET = findViewById(R.id.editTextLastName);
         firstNameET = findViewById(R.id.editTextFirstName);
         userEmailET = findViewById(R.id.editTextUserEmail);
-        userNameET = findViewById(R.id.editTextUserName);
         passwordET = findViewById(R.id.editTextPassword);
         passwordConfirmET = findViewById(R.id.editTextPasswordConfirm);
         phoneNumberET = findViewById(R.id.editTextPhoneNumber);
         spinner = findViewById(R.id.phoneSpinner);
         addressET = findViewById(R.id.editTextAddress);
 
-        SharedPreferences preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
-        String userName = preferences.getString("userName", "");
+        preferences = getSharedPreferences(PREF_KEY, MODE_PRIVATE);
+        String userEmail = preferences.getString("userEmail", "");
         String password = preferences.getString("password", "");
 
-        userNameET.setText(userName);
+        userEmailET.setText(userEmail);
         passwordET.setText(password);
         passwordConfirmET.setText(password);
 
@@ -63,13 +64,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 R.array.phone_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void register(View view) {
         String lastName = lastNameET.getText().toString();
         String firstName = firstNameET.getText().toString();
         String userEmail = userEmailET.getText().toString();
-        String userName = userNameET.getText().toString();
         String password = passwordET.getText().toString();
         String passwordConfirm = passwordConfirmET.getText().toString();
 
@@ -82,10 +84,23 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String phoneType = spinner.getSelectedItem().toString();
         String address = addressET.getText().toString();
 
-        Log.i(LOG_TAG, "Registered user: " + userName + ", Full name: " + lastName + " " + firstName +
-                ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
-                ", Phone Type: " + phoneType + ", Address: " + address);
-        toHome();
+        mAuth.createUserWithEmailAndPassword(userEmail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.d(LOG_TAG, "User has been created");
+                    Log.i(LOG_TAG, "Registered user: Full name: " + lastName + " " + firstName +
+                            ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
+                            ", Phone Type: " + phoneType + ", Address: " + address);
+                    toHome();
+                }
+                else {
+                    Log.d(LOG_TAG, "User creation failed");
+                    Toast.makeText(RegisterActivity.this, "User creation failed: " +
+                            Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     public void cancel(View view) {
@@ -94,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     public void toHome() {
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.putExtra("SECRET_KEY", SECRET_KEY);
         startActivity(intent);
     }
 

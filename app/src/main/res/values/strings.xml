@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">ElectroFix</string>
     <string name="password">Jelszó</string>
-    <string name="username">Felhasználónév</string>
     <string name="login">Bejelentkezés</string>
     <string name="register">Regisztráció</string>
     <string name="last_name">Vezetéknév</string>
@@ -12,6 +11,7 @@
     <string name="cancel">Mégse</string>
     <string name="phone_number">Telefonszám</string>
     <string name="address">Cím</string>
+    <string name="loginGoogle">Bejelentkezés Google fiókkal</string>
     <string-array name="phone_types">
         <item>Otthoni</item>
         <item>Mobil</item>

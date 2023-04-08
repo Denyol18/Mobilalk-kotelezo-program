@@ -9,15 +9,15 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editTextUserName"
+        android:id="@+id/editTextUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:hint="@string/username"
-        android:inputType="text"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="16dp" />
 
     <EditText
@@ -40,6 +40,17 @@
         android:layout_marginRight="10dp"
         android:onClick="login"
         android:text="@string/login" />
+
+    <Button
+        android:id="@+id/loginGoogleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:onClick="loginWithGoogle"
+        android:text="@string/loginGoogle" />
+
 
     <Button
         android:id="@+id/registerButton"
