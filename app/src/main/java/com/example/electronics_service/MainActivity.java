@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
-    private static final int SECRET_KEY = 18;
 
     EditText userNameET;
     EditText passwordET;
