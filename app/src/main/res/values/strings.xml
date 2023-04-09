@@ -15,10 +15,23 @@
     <string name="my_appointments">Időpontjaim</string>
     <string name="contacts">Elérhetőségek</string>
     <string name="welcome">Üdvözöljük!</string>
+    <string name="device_to_check">Megvizsgálni kívánt eszköz:</string>
+    <string name="description">Probléma leírása, egyéb eszköz esetén az eszközt is tűntesse fel itt!</string>
+    <string name="choose_date">Válasszon időpontot!</string>
+    <string name="date_picker">Dátum választó</string>
+    <string name="time_picker">Idő választó</string>
+
     <string-array name="phone_types">
         <item>Otthoni</item>
         <item>Mobil</item>
         <item>Munkahelyi</item>
         <item>Egyéb</item>
+    </string-array>
+
+    <string-array name="device_types">
+        <item>asd</item>
+        <item>fgh</item>
+        <item>jkl</item>
+        <item>qwe</item>
     </string-array>
 </resources>

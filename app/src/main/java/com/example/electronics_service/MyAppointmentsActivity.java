@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MyAppointmentsActivity extends AppCompatActivity {
-    private static final String LOG_TAG = HomeActivity.class.getName();
+    private static final String LOG_TAG = MyAppointmentsActivity.class.getName();
     private FirebaseUser user;
 
     @Override

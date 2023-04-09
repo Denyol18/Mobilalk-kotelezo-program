@@ -19,6 +19,129 @@
         app:layout_constraintVertical_bias="0.022"
         tools:layout_editor_absoluteX="16dp" />
 
+    <TextView
+        android:id="@+id/deviceToCheckTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:text="@string/device_to_check"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/appointmentBookTextView"
+        app:layout_constraintVertical_bias="0.107"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <Spinner
+        android:id="@+id/deviceSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/deviceToCheckTextView"
+        app:layout_constraintVertical_bias="0.039"
+        tools:layout_editor_absoluteX="25dp" />
+
+
+    <TextView
+        android:id="@+id/chooseDateTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:text="@string/choose_date"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/deviceSpinner"
+        app:layout_constraintVertical_bias="0.098"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <LinearLayout
+        android:id="@+id/datePickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseDateTextView"
+        app:layout_constraintVertical_bias="0.049"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/datePickerButton"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:onClick="pickDate"
+            android:text="@string/date_picker" />
+
+        <Button
+            android:id="@+id/timePickerButton"
+            android:layout_width="122dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="90dp"
+            android:onClick="pickTime"
+            android:text="@string/time_picker" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pickedDateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseDateTextView"
+        app:layout_constraintVertical_bias="0.234">
+
+        <TextView
+            android:id="@+id/dateChosenTextView"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="50dp"
+            android:ems="10"
+            android:textAlignment="viewEnd"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/timeChosenTextView"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="15dp"
+            android:ems="10"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:hint="@string/description"
+        android:inputType="text|textMultiLine"
+        android:maxLines="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pickedDateLayout"
+        app:layout_constraintVertical_bias="0.204"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/appointmentBookButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="toMyAppointments"
+        android:text="@string/appointment_book"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appointmentBookTextView"
+        app:layout_constraintVertical_bias="0.795" />
+
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="0dp"
@@ -29,10 +152,11 @@
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appointmentBookTextView"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintTop_toBottomOf="@+id/appointmentBookButton"
+        app:layout_constraintVertical_bias="0.307" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
