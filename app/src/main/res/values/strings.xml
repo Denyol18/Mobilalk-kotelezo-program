@@ -21,6 +21,7 @@
     <string name="date_picker">Dátum választó</string>
     <string name="time_picker">Idő választó</string>
     <string name="sign_out">Kijelentkezés</string>
+    <string name="contacts_list">Cím: vmi \n Postacím: vmi \n Telefonszám: vmi \n E-mail: vmi</string>
 
     <string-array name="phone_types">
         <item>Otthoni</item>

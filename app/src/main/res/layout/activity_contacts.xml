@@ -19,6 +19,19 @@
         app:layout_constraintVertical_bias="0.022"
         tools:layout_editor_absoluteX="16dp" />
 
+    <TextView
+        android:id="@+id/contactsListTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/contacts_list"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contactsTextView"
+        app:layout_constraintVertical_bias="0.099"
+        tools:layout_editor_absoluteX="16dp" />
+
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="0dp"
@@ -30,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactsTextView"
+        app:layout_constraintTop_toBottomOf="@+id/contactsListTextView"
         app:layout_constraintVertical_bias="0.875" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
