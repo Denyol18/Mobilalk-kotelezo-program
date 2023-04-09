@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
@@ -35,6 +37,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     EditText addressET;
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore mStore;
+    private CollectionReference mUsers;
     private SharedPreferences preferences;
 
     @Override
@@ -66,6 +70,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         spinner.setAdapter(adapter);
 
         mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
+        mUsers = mStore.collection("Users");
     }
 
     public void register(View view) {
@@ -92,6 +98,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     Log.i(LOG_TAG, "Registered user: Full name: " + lastName + " " + firstName +
                             ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
                             ", Phone Type: " + phoneType + ", Address: " + address);
+                    User user = new User(lastName, firstName, userEmail, phoneNumber, phoneType, address);
+                    mUsers.add(user);
                     toHome();
                 }
                 else {

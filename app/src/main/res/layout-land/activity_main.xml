@@ -54,17 +54,6 @@
             android:text="@string/login" />
 
         <Button
-            android:id="@+id/loginGoogleButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:onClick="loginWithGoogle"
-            android:text="@string/loginGoogle" />
-
-
-        <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
