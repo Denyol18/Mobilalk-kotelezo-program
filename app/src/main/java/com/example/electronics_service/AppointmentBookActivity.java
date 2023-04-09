@@ -1,5 +1,6 @@
 package com.example.electronics_service;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -16,28 +17,65 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AppointmentBookActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String LOG_TAG = AppointmentBookActivity.class.getName();
     private FirebaseUser user;
+
+    User loggedInUser;
 
     Spinner spinner;
     TextView dateChosenTV;
     TextView timeChosenTV;
     EditText descriptionET;
 
+    private FirebaseFirestore mStore;
+    private CollectionReference mUsers;
+    private CollectionReference mAppointments;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment_book);
 
+        mStore = FirebaseFirestore.getInstance();
+        mUsers = mStore.collection("Users");
+        mAppointments = mStore.collection("Appointments");
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             Log.d(LOG_TAG, "Authenticated user");
+            mUsers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            if (Objects.equals(document.getString("email"), user.getEmail())) {
+                                loggedInUser = new User(
+                                        document.getString("lastName"),
+                                        document.getString("firstName"),
+                                        document.getString("email"),
+                                        document.getString("phoneNumber"),
+                                        document.getString("phoneType"),
+                                        document.getString("address"));
+                            }
+                        }
+                    } else {
+                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                    }
+                }
+            });
         } else {
             Log.d(LOG_TAG, "Unauthenticated user");
             finish();
@@ -55,7 +93,17 @@ public class AppointmentBookActivity extends AppCompatActivity implements Adapte
         spinner.setAdapter(adapter);
     }
 
-    public void toMyAppointments(View view) {
+    public void getAppointment(View view) {
+        String device = spinner.getSelectedItem().toString();
+        String date = dateChosenTV.getText().toString() + ", " + timeChosenTV.getText().toString();
+        String description = descriptionET.getText().toString();
+
+        Appointment appointment = new Appointment(loggedInUser, device, date, description);
+        mAppointments.add(appointment);
+        toMyAppointments();
+    }
+
+    public void toMyAppointments() {
         Intent intent = new Intent(this, MyAppointmentsActivity.class);
         startActivity(intent);
     }

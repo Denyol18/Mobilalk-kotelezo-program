@@ -2,6 +2,7 @@ package com.example.electronics_service;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ public class MyAppointmentsActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
-        finish();
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
     }
 }

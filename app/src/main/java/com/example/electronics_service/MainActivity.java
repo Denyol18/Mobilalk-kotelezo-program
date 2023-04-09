@@ -3,6 +3,8 @@ package com.example.electronics_service;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -79,5 +81,18 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("userEmail", userEmailET.getText().toString());
         editor.putString("password", passwordET.getText().toString());
         editor.apply();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Kilépés").setMessage("Biztosan ki szeretne lépni?")
+                .setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finishAffinity();
+                        Log.d(LOG_TAG, "Exit done");
+                    }
+                }).setNegativeButton("Nem", null).show();
     }
 }

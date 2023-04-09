@@ -62,13 +62,13 @@
         app:layout_constraintVertical_bias="0.178" />
 
     <Button
-        android:id="@+id/cancelButton"
+        android:id="@+id/signOutButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginBottom="40dp"
-        android:onClick="cancel"
-        android:text="@string/cancel"
+        android:onClick="signOut"
+        android:text="@string/sign_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.842"

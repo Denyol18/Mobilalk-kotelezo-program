@@ -45,11 +45,11 @@
             android:text="@string/contacts" />
 
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/signOutButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:onClick="cancel"
-            android:text="@string/cancel" />
+            android:onClick="signOut"
+            android:text="@string/sign_out"/>
     </LinearLayout>
 </ScrollView>

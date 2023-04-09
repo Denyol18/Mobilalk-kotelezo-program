@@ -2,6 +2,8 @@ package com.example.electronics_service;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class HomeActivity extends AppCompatActivity {
     private static final String LOG_TAG = HomeActivity.class.getName();
     private FirebaseUser user;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "Unauthenticated user");
             finish();
         }
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void toAppointmentBook(View view) {
@@ -43,7 +48,31 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cancel(View view) {
-        finish();
+    public void signOut(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        new AlertDialog.Builder(this)
+                .setTitle("Kijelentkezés").setMessage("Biztosan ki szeretne jelentkezni?")
+                        .setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                mAuth.signOut();
+                                startActivity(intent);
+                                Log.d(LOG_TAG, "User logged out.");
+                            }
+                        }).setNegativeButton("Nem", null).show();
+    }
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        new AlertDialog.Builder(this)
+                .setTitle("Kijelentkezés").setMessage("Biztosan ki szeretne jelentkezni?")
+                .setPositiveButton("Igen", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mAuth.signOut();
+                        startActivity(intent);
+                        Log.d(LOG_TAG, "User logged out.");
+                    }
+                }).setNegativeButton("Nem", null).show();
     }
 }
