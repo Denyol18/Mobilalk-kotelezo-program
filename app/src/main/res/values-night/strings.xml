@@ -12,6 +12,10 @@
     <string name="phone_number">Telefonszám</string>
     <string name="address">Cím</string>
     <string name="loginGoogle">Bejelentkezés Google fiókkal</string>
+    <string name="appointment_book">Időpontfoglalás</string>
+    <string name="my_appointments">Időpontjaim</string>
+    <string name="contacts">Elérhetőségek</string>
+    <string name="welcome">Üdvözöljük!</string>
     <string-array name="phone_types">
         <item>Otthoni</item>
         <item>Mobil</item>
