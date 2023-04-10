@@ -3,6 +3,7 @@ package com.example.electronics_service;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -98,14 +99,24 @@ public class AppointmentBookActivity extends AppCompatActivity implements Adapte
     }
 
     public void getAppointment(View view) {
-        String device = spinner.getSelectedItem().toString();
-        String date = dateChosenTV.getText().toString() + ", " + timeChosenTV.getText().toString();
-        String description = descriptionET.getText().toString();
 
-        Appointment appointment = new Appointment(loggedInUser, device, date, description);
-        mAppointments.add(appointment);
-        mNotificationHandler.send("Új időpont rögzítve!");
-        toMyAppointments();
+        if (dateChosenTV.getText().toString().isEmpty() || timeChosenTV.getText().toString().isEmpty()
+                || descriptionET.getText().toString().isEmpty()) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Időpontfoglalás").setMessage("Dátum választás és leírás megadás kötelező!")
+                    .setPositiveButton("OK", null).show();
+        }
+        else {
+            String device = spinner.getSelectedItem().toString();
+            String date = dateChosenTV.getText().toString() + ", " + timeChosenTV.getText().toString();
+            String description = descriptionET.getText().toString();
+
+            Appointment appointment = new Appointment(loggedInUser, device, date, description);
+            mAppointments.add(appointment);
+            mNotificationHandler.send("Új időpont rögzítve!");
+            toMyAppointments();
+        }
     }
 
     public void toMyAppointments() {

@@ -58,7 +58,8 @@ public class NotificationHandler {
                 .setContentTitle("ElectroFix")
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
 
         mManager.notify(NOTIFICATION_ID, builder.build());
     }
