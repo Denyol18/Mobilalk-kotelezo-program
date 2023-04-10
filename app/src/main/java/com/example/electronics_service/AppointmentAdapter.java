@@ -62,26 +62,18 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             mDateText = itemView.findViewById(R.id.dateTextView);
             mDescriptionText = itemView.findViewById(R.id.descriptionTextView);
 
-            itemView.findViewById(R.id.update).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Activity","Updateeeeee");
-                }
-            });
-
-            itemView.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Activity","Deleteeeeee");
-                }
-            });
-
         }
 
         public void bindTo(Appointment currentAppointment) {
             mDeviceText.setText(currentAppointment.getDevice());
             mDateText.setText(currentAppointment.getDate());
             mDescriptionText.setText(currentAppointment.getDescription());
+
+            itemView.findViewById(R.id.update).setOnClickListener(view ->
+                    ((MyAppointmentsActivity)mContext).updateAppointment(currentAppointment));
+
+            itemView.findViewById(R.id.delete).setOnClickListener(view ->
+                    ((MyAppointmentsActivity)mContext).deleteAppointment(currentAppointment));
         }
     }
 }

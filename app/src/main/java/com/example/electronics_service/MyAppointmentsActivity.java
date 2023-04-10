@@ -14,6 +14,7 @@ import android.view.View;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -63,12 +64,13 @@ public class MyAppointmentsActivity extends AppCompatActivity {
     private void queryData() {
         mAppointmentList.clear();
 
-        mAppointments.orderBy("device", Query.Direction.ASCENDING).get().addOnSuccessListener(queryDocumentSnapshots -> {
+        mAppointments.orderBy("device", Query.Direction.ASCENDING).limit(20).get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                 Map<String, String> user1 = (Map<String, String>) document.get("user");
                 String email = user1.get("email");
                 if (Objects.equals(email, user.getEmail())) {
                     Appointment appointment = document.toObject(Appointment.class);
+                    appointment.setId(document.getId());
                     mAppointmentList.add(appointment);
                     Log.d(LOG_TAG, "IT WORKS BABY!!! :DDDD");
                 }
@@ -80,6 +82,21 @@ public class MyAppointmentsActivity extends AppCompatActivity {
 
             mAdapter.notifyDataSetChanged();
         });
+    }
+
+    public void deleteAppointment(Appointment appointment) {
+        DocumentReference ref = mAppointments.document(appointment._getId());
+        ref.delete().addOnSuccessListener(success -> {
+            Log.d(LOG_TAG, "Appointment is deleted");
+        }).addOnFailureListener(failure -> {
+            Log.d(LOG_TAG, "Appointment deletion failed");
+        });
+
+        queryData();
+    }
+
+    public void updateAppointment(Appointment appointment) {
+
     }
 
     public void noContent() {

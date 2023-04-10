@@ -44,6 +44,8 @@ public class AppointmentBookActivity extends AppCompatActivity implements Adapte
     private CollectionReference mUsers;
     private CollectionReference mAppointments;
 
+    private NotificationHandler mNotificationHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,8 @@ public class AppointmentBookActivity extends AppCompatActivity implements Adapte
                 R.array.device_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        mNotificationHandler = new NotificationHandler(this);
     }
 
     public void getAppointment(View view) {
@@ -100,6 +104,7 @@ public class AppointmentBookActivity extends AppCompatActivity implements Adapte
 
         Appointment appointment = new Appointment(loggedInUser, device, date, description);
         mAppointments.add(appointment);
+        mNotificationHandler.send("Új időpont rögzítve!");
         toMyAppointments();
     }
 

@@ -1,6 +1,7 @@
 package com.example.electronics_service;
 
 public class Appointment {
+    private String id;
     private User user;
     private String device;
     private String date;
@@ -29,5 +30,13 @@ public class Appointment {
 
     public String getDescription() {
         return description;
+    }
+
+    public String _getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
