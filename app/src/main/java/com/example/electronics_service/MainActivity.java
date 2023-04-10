@@ -46,21 +46,28 @@ public class MainActivity extends AppCompatActivity {
         String userEmail = userEmailET.getText().toString();
         String password = passwordET.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(userEmail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(LOG_TAG, "Login successful");
-                    Log.i(LOG_TAG, "Logged in user, email: " + userEmail + ", Password: " + password);
-                    toHome();
+        if(userEmail.isEmpty() || password.isEmpty()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Bejelentkezés").setMessage("Minden mező kitöltése kötelező!")
+                    .setPositiveButton("OK", null).show();
+        }
+
+        else {
+            mAuth.signInWithEmailAndPassword(userEmail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(LOG_TAG, "Login successful");
+                        Log.i(LOG_TAG, "Logged in user, email: " + userEmail + ", Password: " + password);
+                        toHome();
+                    } else {
+                        Log.w(LOG_TAG, "Login failed");
+                        Toast.makeText(MainActivity.this, "Login failed: " +
+                                Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                    }
                 }
-                else {
-                    Log.w(LOG_TAG, "Login failed");
-                    Toast.makeText(MainActivity.this, "Login failed: " +
-                            Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+            });
+        }
     }
 
     public void register(View view) {

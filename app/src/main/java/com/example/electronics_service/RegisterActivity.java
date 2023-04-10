@@ -3,6 +3,7 @@ package com.example.electronics_service;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -80,35 +81,46 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String userEmail = userEmailET.getText().toString();
         String password = passwordET.getText().toString();
         String passwordConfirm = passwordConfirmET.getText().toString();
-
-        if (!password.equals(passwordConfirm)) {
-            Log.e(LOG_TAG, "Given passwords don't match!");
-            return;
-        }
-
         String phoneNumber = phoneNumberET.getText().toString();
         String phoneType = spinner.getSelectedItem().toString();
         String address = addressET.getText().toString();
 
-        mAuth.createUserWithEmailAndPassword(userEmail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(LOG_TAG, "User has been created");
-                    Log.i(LOG_TAG, "Registered user: Full name: " + lastName + " " + firstName +
-                            ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
-                            ", Phone Type: " + phoneType + ", Address: " + address);
-                    User user = new User(lastName, firstName, userEmail, phoneNumber, phoneType, address);
-                    mUsers.add(user);
-                    toHome();
-                }
-                else {
-                    Log.w(LOG_TAG, "User creation failed");
-                    Toast.makeText(RegisterActivity.this, "User creation failed: " +
-                            Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-                }
+        if(lastName.isEmpty() || firstName.isEmpty() || userEmail.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()
+        || phoneNumber.isEmpty() || phoneType.isEmpty() || address.isEmpty()) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Regisztráció").setMessage("Minden mező kitöltése kötelező!")
+                    .setPositiveButton("OK", null).show();
+        }
+
+        else {
+
+            if (!password.equals(passwordConfirm)) {
+                new AlertDialog.Builder(this)
+                        .setTitle("Regisztráció").setMessage("A megadott jelszavak nem egyeznek!")
+                        .setPositiveButton("OK", null).show();
+                return;
             }
-        });
+
+
+            mAuth.createUserWithEmailAndPassword(userEmail, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Log.d(LOG_TAG, "User has been created");
+                        Log.i(LOG_TAG, "Registered user: Full name: " + lastName + " " + firstName +
+                                ", E-mail: " + userEmail + ", Password: " + password + ", Phone number: " + phoneNumber +
+                                ", Phone Type: " + phoneType + ", Address: " + address);
+                        User user = new User(lastName, firstName, userEmail, phoneNumber, phoneType, address);
+                        mUsers.add(user);
+                        toHome();
+                    } else {
+                        Log.w(LOG_TAG, "User creation failed");
+                        Toast.makeText(RegisterActivity.this, "User creation failed: " +
+                                Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 
     public void cancel(View view) {
