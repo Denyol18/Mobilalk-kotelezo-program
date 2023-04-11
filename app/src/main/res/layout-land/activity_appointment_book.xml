@@ -18,13 +18,15 @@
             android:layout_margin="10dp"
             android:text="@string/appointment_book"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/deviceToCheckTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:ems="10"
             android:text="@string/device_to_check"
             android:textSize="18sp" />
@@ -33,16 +35,21 @@
             android:id="@+id/deviceSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp" />
 
 
         <TextView
             android:id="@+id/chooseDateTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:ems="10"
             android:text="@string/choose_date"
+            android:textAlignment="center"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -99,7 +106,9 @@
             android:id="@+id/editTextDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:ems="10"
             android:hint="@string/description"
             android:inputType="text|textMultiLine"
@@ -109,8 +118,9 @@
             android:id="@+id/appointmentBookButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:onClick="getAppointment"
             android:text="@string/appointment_book" />
 
@@ -118,7 +128,9 @@
             android:id="@+id/cancelButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="60dp"
             android:onClick="cancel"
             android:text="@string/cancel" />
