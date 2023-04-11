@@ -72,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 } else {
                     new AlertDialog.Builder(this)
-                            .setTitle("Értesítések").setMessage("Nem fog kapni értesítéseket időpont foglalás, törlés és" +
+                            .setTitle("Értesítések").setMessage("Nem fog kapni értesítéseket időpont foglalás, törlés és " +
                                     "sürgőssé megjelölés után!")
                             .setPositiveButton("OK", null).show();
                 }
