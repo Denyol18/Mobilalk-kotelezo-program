@@ -100,9 +100,16 @@ public class MyAppointmentsActivity extends AppCompatActivity {
     }
 
     public void updateAppointment(Appointment appointment) {
-        mAppointments.document(appointment._getId()).update("description", "[SÜRGŐS] " + appointment.getDescription());
-        mNotificationHandler.send("Sürgősség hozzáadva! Kollégáink a megadott időpont előtt felkeresik ez ügyben!");
-        queryData();
+        if (appointment.getDescription().contains("[SÜRGŐS]")) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Időpontok").setMessage("Ezt az időpontot már megjelölte sürgősnek!")
+                    .setPositiveButton("OK", null).show();
+        }
+        else {
+            mAppointments.document(appointment._getId()).update("description", "[SÜRGŐS] " + appointment.getDescription());
+            mNotificationHandler.send("Sürgősség hozzáadva! Kollégáink a megadott időpont előtt felkeresik ez ügyben!");
+            queryData();
+        }
     }
 
     public void noContent() {

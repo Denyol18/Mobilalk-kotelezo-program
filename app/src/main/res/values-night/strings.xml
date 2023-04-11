@@ -21,7 +21,7 @@
     <string name="date_picker">Dátum választó</string>
     <string name="time_picker">Idő választó</string>
     <string name="sign_out">Kijelentkezés</string>
-    <string name="contacts_list">Cím: vmi \n Postacím: vmi \n Telefonszám: vmi \n E-mail: vmi</string>
+    <string name="contacts_list">Cím: ElectroFix, Zedváros Zed tér 6., A-6969 \n \n Postacím: 6921 Zedváros, Postafiók 123. \n \n Telefonszám: +36 99 423188 \n \n E-mail: contact@electrofix.zd</string>
     <string name="device">Eszköz</string>
     <string name="date">Dátum</string>
     <string name="description_1">Leírás</string>
@@ -36,9 +36,25 @@
     </string-array>
 
     <string-array name="device_types">
-        <item>asd</item>
-        <item>fgh</item>
-        <item>jkl</item>
-        <item>qwe</item>
+        <item>Számítógép</item>
+        <item>Okostelefon</item>
+        <item>Laptop</item>
+        <item>Router</item>
+        <item>Kamera</item>
+        <item>GPS</item>
+        <item>Hangszóró</item>
+        <item>Játék konzol</item>
+        <item>TV</item>
+        <item>Rádió</item>
+        <item>Mikrofon</item>
+        <item>Fejhallgató</item>
+        <item>Konyhai gép</item>
+        <item>Mikrohullámú sütő</item>
+        <item>Okosmérleg</item>
+        <item>Airfryer</item>
+        <item>Mosógép</item>
+        <item>Vízforraló</item>
+        <item>Porszívó</item>
+        <item>Egyéb</item>
     </string-array>
 </resources>
