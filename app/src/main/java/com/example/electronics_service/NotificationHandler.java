@@ -57,7 +57,7 @@ public class NotificationHandler {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext, CHANNEL_ID)
                 .setContentTitle("ElectroFix")
                 .setContentText(message)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_electrofix_logo)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
