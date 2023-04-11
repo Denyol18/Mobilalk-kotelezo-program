@@ -1,41 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ContactsActivity"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/contactsTextView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/contacts"
-        android:textAlignment="center"
-        android:textSize="28sp" />
+        tools:context=".ContactsActivity"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/contactsListTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:text="@string/contacts_list"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/contactsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/contacts"
+            android:textAlignment="center"
+            android:textSize="28sp" />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:onClick="cancel"
-        android:text="@string/cancel" />
+        <TextView
+            android:id="@+id/contactsListTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text="@string/contacts_list"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:onClick="cancel"
+            android:text="@string/cancel" />
+
+    </LinearLayout>
+</ScrollView>
