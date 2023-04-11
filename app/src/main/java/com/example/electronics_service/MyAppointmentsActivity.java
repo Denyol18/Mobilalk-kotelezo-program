@@ -26,6 +26,7 @@ import java.util.Objects;
 public class MyAppointmentsActivity extends AppCompatActivity {
     private static final String LOG_TAG = MyAppointmentsActivity.class.getName();
     private FirebaseUser user;
+    private NotificationHandler mNotificationHandler;
 
     private RecyclerView mRecyclerView;
     private ArrayList<Appointment> mAppointmentList;
@@ -57,6 +58,8 @@ public class MyAppointmentsActivity extends AppCompatActivity {
 
         mStore = FirebaseFirestore.getInstance();
         mAppointments = mStore.collection("Appointments");
+
+        mNotificationHandler = new NotificationHandler(this);
 
         queryData();
     }
@@ -92,11 +95,14 @@ public class MyAppointmentsActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "Appointment deletion failed");
         });
 
+        mNotificationHandler.send("Időpont törölve!");
         queryData();
     }
 
     public void updateAppointment(Appointment appointment) {
-
+        mAppointments.document(appointment._getId()).update("description", "[SÜRGŐS] " + appointment.getDescription());
+        mNotificationHandler.send("Sürgősség hozzáadva! Kollégáink a megadott időpont előtt felkeresik ez ügyben!");
+        queryData();
     }
 
     public void noContent() {
@@ -113,6 +119,11 @@ public class MyAppointmentsActivity extends AppCompatActivity {
     }
 
     public void cancel(View view) {
+        onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

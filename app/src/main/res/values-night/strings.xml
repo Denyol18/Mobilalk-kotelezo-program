@@ -25,7 +25,7 @@
     <string name="device">Eszköz</string>
     <string name="date">Dátum</string>
     <string name="description_1">Leírás</string>
-    <string name="update">Szerkesztés</string>
+    <string name="urgent">Sürgős</string>
     <string name="delete">Törlés</string>
 
     <string-array name="phone_types">
